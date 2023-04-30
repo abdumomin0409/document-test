@@ -1,0 +1,11 @@
+com/company/instagram/firebase/MediaService.class
+com/company/instagram/firebase/MediaUtils.class
+com/company/instagram/service/DocumentService.class
+com/company/instagram/InstagramApplication.class
+com/company/instagram/domains/Document$DocumentBuilder.class
+com/company/instagram/domains/Document.class
+com/company/instagram/dto/ReturnDocumentDTO$ReturnDocumentDTOBuilder.class
+com/company/instagram/dto/ReturnDocumentDTO.class
+com/company/instagram/StringUtils.class
+com/company/instagram/repository/DocumentRepository.class
+com/company/instagram/controller/DocumentController.class
