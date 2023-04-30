@@ -1,11 +1,16 @@
-server:
-  port: 8090
+DATABASE:
+  URL: postgresql://postgres:2QU8jOkHyZFYVT7eRGLN@containers-us-west-17.railway.app:7126/railway
+  PGDATABASE: railway
+  PGHOST: containers-us-west-17.railway.app
+  PGPASSWORD: 2QU8jOkHyZFYVT7eRGLN
+  PGPORT: 7126
+  PGUSER: postgres
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/b26jpa?currentSchema=instagram
-    username: postgres
-    password: 1234
-    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://${DATABASE.PGHOST}:${DATABASE.PGPORT}/${DATABASE.PGDATABASE}
+    username: ${DATABASE.PGUSER}
+    password: ${DATABASE.PGPASSWORD}
+    name: document-test
   jpa:
     show-sql: true
     hibernate:
