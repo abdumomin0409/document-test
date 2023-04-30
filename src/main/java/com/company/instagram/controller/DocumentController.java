@@ -35,21 +35,6 @@ public class DocumentController {
         return ResponseEntity.ok(documents);
     }
 
-    @GetMapping("/get/{name:.*}")
-    public ResponseEntity<Document> downloadFileURI(@PathVariable(name = "name") String name) throws IOException, URISyntaxException {
-        documentService.downloadFile(name);
-        return ResponseEntity.ok().build();
-    }
 
-    @GetMapping("/download/{name:.*}")
-    public ResponseEntity<InputStreamResource> downloadFile(@PathVariable String name) throws IOException {
-        File file = documentService.downloadFile(name);
-        InputStreamResource resource = new InputStreamResource(new FileInputStream(file));
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + file.getName())
-                .contentLength(file.length())
-                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .body(resource);
-    }
 }
 

@@ -1,7 +1,6 @@
 package com.company.instagram.service;
 
 import com.company.instagram.domains.Document;
-import com.company.instagram.firebase.MediaService;
 import com.company.instagram.repository.DocumentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -21,7 +20,6 @@ import static io.grpc.inprocess.InProcessServerBuilder.generateName;
 public class DocumentService {
 
     private final DocumentRepository documentRepository;
-    private final MediaService mediaService;
 
     public List<Document> saveDocuments(List<MultipartFile> files) throws IOException {
         if (files.isEmpty()) {
@@ -39,7 +37,7 @@ public class DocumentService {
                             .extension(extension)
                             .mimeType(file.getContentType())
                             .size(file.getSize())
-                            .path(mediaService.upload(file, generatedName))
+//                            .path(mediaService.upload(file, generatedName))
                             .build();
                     documentRepository.save(document);
                     documents.add(document);
@@ -53,8 +51,5 @@ public class DocumentService {
         return documentRepository.findById(id);
     }
 
-    public File downloadFile(String name) throws IOException {
-        return mediaService.download(name);
-    }
 }
 
