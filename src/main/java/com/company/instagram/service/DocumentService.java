@@ -21,30 +21,21 @@ public class DocumentService {
 
     private final DocumentRepository documentRepository;
 
-    public List<Document> saveDocuments(List<MultipartFile> files) throws IOException {
-        if (files.isEmpty()) {
-            throw new RuntimeException("File not found");
-        }
-        List<Document> documents = new ArrayList<>();
-
-        files.forEach(
-                file -> {
-                    String extension = getExtension(Objects.requireNonNull(file.getOriginalFilename()));
-                    String generatedName = generateName() + extension;
-                    Document document = Document.childBuilder()
-                            .originalName(file.getOriginalFilename())
-                            .generatedName(generatedName)
-                            .extension(extension)
-                            .mimeType(file.getContentType())
-                            .size(file.getSize())
+    public Document saveDocuments(MultipartFile file) throws IOException {
+        String extension = getExtension(Objects.requireNonNull(file.getOriginalFilename()));
+        String generatedName = generateName() + extension;
+        Document document = Document.childBuilder()
+                .originalName(file.getOriginalFilename())
+                .generatedName(generatedName)
+                .extension(extension)
+                .mimeType(file.getContentType())
+                .size(file.getSize())
 //                            .path(mediaService.upload(file, generatedName))
-                            .build();
-                    documentRepository.save(document);
-                    documents.add(document);
-                }
-        );
-        return documents;
-    }
+                .build();
+        System.out.println(document);
+        documentRepository.save(document);
+        return document;
+}
 
 
     public Optional<Document> getDocument(Long id) {

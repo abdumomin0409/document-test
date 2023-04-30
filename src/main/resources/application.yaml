@@ -1,11 +1,6 @@
 spring:
   profiles:
-    active: dev
-  datasource:
-    url: jdbc:postgresql://${DATABASE.PGHOST}:${DATABASE.PGPORT}/${DATABASE.PGDATABASE}
-    username: ${DATABASE.PGUSER}
-    password: ${DATABASE.PGPASSWORD}
-    name: document-test
+    active: prod
   jpa:
     show-sql: true
     hibernate:
@@ -20,6 +15,11 @@ spring:
   config:
     activate:
       on-profile: prod
+  datasource:
+    url: ${DATABASE.URL}
+    username: ${DATABASE.PGUSER}
+    password: ${DATABASE.PGPASSWORD}
+    name: document-test
 DATABASE:
   URL: postgresql://postgres:2QU8jOkHyZFYVT7eRGLN@containers-us-west-17.railway.app:7126/railway
   PGDATABASE: railway
@@ -27,4 +27,14 @@ DATABASE:
   PGPASSWORD: 2QU8jOkHyZFYVT7eRGLN
   PGPORT: 7126
   PGUSER: postgres
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/b26jpa?currentSchema=instagram
+    username: postgres
+    password: 1234
 

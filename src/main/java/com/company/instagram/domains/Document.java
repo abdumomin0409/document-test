@@ -11,6 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(builderMethodName = "childBuilder")
+@ToString
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

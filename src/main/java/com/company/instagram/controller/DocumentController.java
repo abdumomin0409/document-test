@@ -30,8 +30,8 @@ public class DocumentController {
     }
 
     @PostMapping(name = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<List<Document>> uploadDocs(@RequestPart("files") List<MultipartFile> files) throws IOException {
-        List<Document> documents = documentService.saveDocuments(files);
+    public ResponseEntity<Document> uploadDocs(@RequestPart("files") MultipartFile files) throws IOException {
+        Document documents = documentService.saveDocuments(files);
         return ResponseEntity.ok(documents);
     }
 
