@@ -20,6 +20,7 @@ spring:
     username: ${DATABASE.PGUSER}
     password: ${DATABASE.PGPASSWORD}
     name: document-test
+    driver-class-name: org.postgresql.Driver
 DATABASE:
   URL: jdbc:postgresql://postgres:2QU8jOkHyZFYVT7eRGLN@containers-us-west-17.railway.app:7126/railway
   PGDATABASE: railway
